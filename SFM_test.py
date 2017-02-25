@@ -96,23 +96,23 @@ def TriangluatePoints(pointcloud, Kinv, pts1, pts2, P, P1):
 
 
 
-#img1 = cv2.imread('Beardshear_Hall.JPG',0)          # queryImage
-#img2 = cv2.imread('Beardshear_Hall_2.JPG',0) # trainImage
+#img1 = cv2.imread('input/beardshear/Beardshear_Hall.JPG',0)          # queryImage
+#img2 = cv2.imread('input/beardshear/Beardshear_Hall_2.JPG',0) # trainImage
 
-#img1 = cv2.imread('box.png',0)          # queryImage
-#img2 = cv2.imread('box_in_scene.png',0) # trainImage
+#img1 = cv2.imread('input/box/box.png',0)          # queryImage
+#img2 = cv2.imread('input/box/box_in_scene.png',0) # trainImage
 
-img1 = cv2.imread('cube_1.JPG',0)          # queryImage
-img2 = cv2.imread('cube_2.JPG',0) # trainImage
+img1 = cv2.imread('input/cube_small/cube_1.JPG',0)          # queryImage
+img2 = cv2.imread('input/cube_small/cube_2.JPG',0) # trainImage
 
-#img1 = cv2.imread('knome_1.JPG',0)          # queryImage
-#img2 = cv2.imread('knome_2.JPG',0) # trainImage
+#img1 = cv2.imread('input/knome_small/knome_1.JPG',0)          # queryImage
+#img2 = cv2.imread('input/knome_small/knome_2.JPG',0) # trainImage
 
-#img1 = cv2.imread('knome_4.JPG',0)          # queryImage
-#img2 = cv2.imread('knome_5.JPG',0) # trainImage
+#img1 = cv2.imread('input/knome_marker_small/knome_4.JPG',0)          # queryImage
+#img2 = cv2.imread('input/knome_marker_small/knome_5.JPG',0) # trainImage
 
-#img1 = cv2.imread('Mount_Rushmore_1.JPG',0)          # queryImage
-#img2 = cv2.imread('Mount_Rushmore_2.JPG',0) # trainImage
+#img1 = cv2.imread('input/rushmore/Mount_Rushmore_1.JPG',0)          # queryImage
+#img2 = cv2.imread('input/rushmore/Mount_Rushmore_2.JPG',0) # trainImage
 
 # Initiate ORB detector
 orb = cv2.ORB_create()
@@ -148,7 +148,7 @@ TriangluatePoints(pointcloud, Kinv, pts1, pts2, P, P1)
 
 
 
-file = open("xyz.xyz", "w")
+file = open("output/xyz.xyz", "w")
 
 for i in range(len(pointcloud)):
     print (pointcloud[i])
