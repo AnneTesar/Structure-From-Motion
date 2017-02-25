@@ -2,7 +2,10 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-def FindCameraMatrices(good, pts1, pts2):   
+def FindCameraMatrices(good, kp1, kp2, matches):
+    pts1 = []
+    pts2 = []
+    
     for m in matches:
         pts2.append(kp2[m.trainIdx].pt)
         pts1.append(kp1[m.queryIdx].pt)
@@ -52,7 +55,7 @@ def FindCameraMatrices(good, pts1, pts2):
                    (R.item(1,0), R.item(1,1), R.item(1,2), t.item(1)),
                    (R.item(2,0), R.item(2,1), R.item(2,2), t.item(2))])
 
-    return F, K, P, P1
+    return F, K, P, P1, pts1, pts2
        
 
 def LinearLSTriangulation(u, P, u1, P1):
@@ -67,13 +70,15 @@ def LinearLSTriangulation(u, P, u1, P1):
                    (-(u1[1]*P1.item(2,3)-P1.item(1,3)))])
     B = B.T
 
-    print (A)
-    print (B)
+    #print (A)
+    #print (B)
 
     x = np.linalg.lstsq(A, B)[0]
     return x
 
 def TriangluatePoints(pointcloud, Kinv, pts1, pts2, P, P1):
+    #print ("pts1")
+    #print (pts1)
     for i in range(len(pts1)):
         #print (pts1[i])
         kp = pts1[i]
@@ -131,13 +136,11 @@ matches = bf.match(des1,des2)
 matches = sorted(matches, key = lambda x:x.distance)
 
 # Draw first 10 matches.
-img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches[:300],None, flags=2)
+img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches[:20],None, flags=2)
 
 # Create/Derive all the matrices we need
 good = []
-pts1 = []
-pts2 = []
-F, K, P, P1 = FindCameraMatrices(good, pts1, pts2)
+F, K, P, P1, pts1, pts2 = FindCameraMatrices(good, kp1, kp2, matches[:20])
 
 # Triangulate Points from the first two images
 pointcloud = []
