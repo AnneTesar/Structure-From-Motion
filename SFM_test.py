@@ -152,7 +152,7 @@ file = open("output/xyz.xyz", "w")
 
 for i in range(len(pointcloud)):
     print (pointcloud[i])
-    file.write(str(pointcloud[i][0])[2:-2] + str(pointcloud[i][1])[2:-2] + str(pointcloud[i][2])[2:-2] + "\n")
+    file.write(str(pointcloud[i][0])[0:] + str(pointcloud[i][1])[0:] + str(pointcloud[i][2])[0:] + "\n")
 
 file.close()
 
