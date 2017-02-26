@@ -29,3 +29,11 @@ def find_homography_inliers_2_views(vi, vj):
     min_v, max_v = cv2.minMaxLoc(k)
     h = cv2.findHomography(*k, ransacReprojThreshold=max_v * .004)
     return cv2.countNonZero(h)
+
+
+def flip_matches(matches):
+    flip = []
+    for match in matches:
+        # This probably isn't sane
+        flip.append((match[1], match[0]))
+    return flip # flop
