@@ -18,8 +18,8 @@ def FindCameraMatrices(good, kp1, kp2, matches):
     print (F)
 
     # Initialize Calibration Matrix
-    K = np.matrix([(570, 0, 356),
-         (0, 562, 300),
+    K = np.matrix([(2601, 0, 2158),
+         (0, 3333, 1114),
          (0, 0, 1)])
 
     # Calculate Essential Matrix
@@ -140,7 +140,7 @@ img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches[:20],None, flags=2)
 
 # Create/Derive all the matrices we need
 good = []
-F, K, P, P1, pts1, pts2 = FindCameraMatrices(good, kp1, kp2, matches[:20])
+F, K, P, P1, pts1, pts2 = FindCameraMatrices(good, kp1, kp2, matches[:])
 
 # Triangulate Points from the first two images
 pointcloud = []
